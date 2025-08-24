@@ -36,7 +36,6 @@ export default function PerfilCliente() {
         repeatpassword: "",
     });
 
-    // Enlazar el id de la URL con el provider
     useEffect(() => {
         if (!id) {
         navigate("/cliente/login");
@@ -177,7 +176,6 @@ export default function PerfilCliente() {
             </div>
             ))}
 
-            {/* Seguridad */}
             <div className={formStyles.sectionBlock}>
             <div className={formStyles.sectionHeader}>
                 <h3>Seguridad</h3>
