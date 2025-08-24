@@ -1,0 +1,45 @@
+@import url(root.css);
+
+.contenedorLocal{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    justify-content: start;
+    margin-left: 1rem;
+    margin-top: 2rem;
+}
+
+.contenedorInnerLocal{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: center;
+    height: fit-content;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.tituloLocal {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+
+.contenedorInnerLocal p{
+    text-align: start;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.info{
+    margin-top: 0.8rem;
+}
+
+.innerText{
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1.7;
+}

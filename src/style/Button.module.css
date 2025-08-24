@@ -1,0 +1,123 @@
+@import url(root.css);
+
+/* ===== Botón base ===== */
+.btnBase {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    border-radius: 3.75rem;
+    border: none;
+    cursor: pointer;
+    line-height: normal;
+    color: var(--white);
+    height: 2.5rem;
+    padding-inline: 0.2rem;
+    width: 100%;                 /* Por defecto: 100% cuando está solo */
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0px 4px 4px 0px rgba(255, 189, 213, 0.3);
+}
+
+/* ===== Variantes ===== */
+
+/* Genérico */
+.btnGeneric {
+    background-color: var(--pinkGum); 
+    height: 2rem;
+    margin-inline: 0.2rem;
+    width: 98%;
+}
+
+.btnGeneric:hover:not(.btnDisabled) { 
+    background: linear-gradient(
+        90deg,
+        #F65681 0%,
+        #F67EAA 31%,
+        #FA8966 69%,
+        #F9B481 100%
+    );
+    transition: all 0.5s ease;
+
+}
+
+/* Guardar */
+.btnSave {
+    background-color: var(--greenOK);
+    width: 98%;
+    height: 2rem;
+    margin-inline: 0.2rem;
+}
+
+.btnSave:hover:not(.btnDisabled) { 
+    background: linear-gradient(
+        90deg,
+        #F65681 0%,
+        #F67EAA 31%,
+        #FA8966 69%,
+        #F9B481 100%
+    );
+    transition: all 0.5s ease;
+
+}
+
+/* Cancelar */
+.btnCancel {
+    background-color: var(--redCancel);
+    width: 98%;                 /* Por defecto: 100% cuando está solo */
+    height: 2rem;
+    margin-inline: 0.2rem;
+}
+.btnCancel:hover:not(.btnDisabled) { 
+    background-color: #FA0707;
+    transition: all 0.5s ease;
+}
+
+/* Estado deshabilitado */
+.btnDisabled {
+    background: linear-gradient(
+        90deg,
+        #F65681 0%,
+        #F67EAA 31%,
+        #FA8966 69%,
+        #F9B481 100%
+    );
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+    /* ===== Contenedor de botones =====
+    - Centra el grupo
+    - Dentro del grupo, por defecto cada botón mide 100px
+    - Si hay solo 1 botón en el grupo, vuelve a 100%
+    */
+.btnGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;    /* centra el grupo */
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.btnGroup .btnBase {
+  width: 100px;               /* en grupo: botones fijos a 100px */
+}
+
+/* Normaliza variantes dentro del grupo */
+.btnGroup .btnSave,
+.btnGroup .btnCancel,
+.btnGroup .btnGeneric {
+    width: 100px;
+}
+
+/* Si hay SOLO UN botón dentro del grupo → 100% */
+.btnGroup .btnBase:only-child,
+.btnGroup .btnBase:only-child.btnSave,
+.btnGroup .btnBase:only-child.btnCancel,
+.btnGroup .btnBase:only-child.btnGeneric {
+    width: 100%;
+}

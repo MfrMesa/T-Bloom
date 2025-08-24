@@ -1,0 +1,223 @@
+@import url(root.css);
+
+.contentArea {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    min-height: 0; 
+}
+
+.scrollServicios {
+    height: 490px;
+    overflow-y: auto;
+    padding-right: 4px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0px,
+        black 10px,
+        black calc(100% - 10px),
+        transparent 100%
+    );
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0px,
+        black 10px,
+        black calc(100% - 10px),
+        transparent 100%
+    );
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollServicios::-webkit-scrollbar {
+    display: none;
+}
+
+.servicioContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+.fondoBlanco {
+    background-color: #ffffff;
+}
+
+.fondoGris {
+    background-color: #fbfbfb;
+}
+
+.footerPosition{
+    padding-top: 1rem;
+}
+
+.wrapperLocal{
+    width: 100%;
+    height: 100%;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.headerLocal{
+    width: 100%;
+    height: 10.75rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+.headerLocal h1{
+    color: var(--white);
+    -webkit-text-stroke-width: 0.2px;
+    -webkit-text-stroke-color: var(--pinkGum);
+    font-family: Poppins;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.linksLocal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    justify-content: space-between;
+    padding-inline: 2rem;
+    margin-bottom: 0.8rem;
+    width: 20.625rem;
+    height: 3.9375rem;
+    flex-shrink: 0;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 189, 213, 0.30);
+    background: var(--white);
+    box-shadow: 0 4px 4px 0 rgba(226, 72, 75, 0.13);
+}
+
+.linksLocal:hover{
+    background-color: var(--orange);
+    color: var(--white);
+    transition: all ease 0.2s;
+}
+
+.linksLocal:hover p{
+    color: var(--white);
+    transition: all ease 0.2s;
+}
+
+.linksLocal:hover img{
+    filter: brightness(0) invert(1); 
+    transition: all ease 0.2s;
+}
+
+
+.puntosContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-block: 2rem;
+    height: 240px;
+}
+
+.puntosInnerContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.cardDisabled {
+    opacity: 0.55;
+    filter: grayscale(20%);
+    pointer-events: none;
+    position: relative;
+}
+
+.estadoInfo{
+    display: flex;          
+    align-items: center;           
+    justify-content: flex-start;   
+    gap: 10px;                      
+    font-size: 1rem;
+    line-height: 0.8;              
+    color: var(--text);
+}
+
+
+.candado{
+    width: 18px;
+    height: 18px;
+    display: block;                
+    flex-shrink: 0;                
+}
+
+.chevronBtn{
+    position: absolute;
+    right: 14px;              
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    padding: 0;
+    line-height: 0;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.headerChevron{
+    width: 18px;
+    height: 18px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.34));
+    transition: transform .2s ease;
+}
+
+.open{ transform: rotate(180deg); }
+
+.headerDropdown{
+    position: absolute;
+    left: 50%;
+    bottom: -5px;                 
+    transform: translate(-50%, 100%);
+    width: 330px;
+    background: var(--white);
+    border-radius: 14px;
+    box-shadow: 0 14px 28px rgba(0,0,0,.22);
+    padding: 6px;
+    z-index: 50;
+    max-height: 280px;
+    overflow: auto;
+}
+
+.dropdownItem{
+    padding: .7rem .9rem;
+    border-radius: 10px;
+    display: flex; align-items: center;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    font-family: var(--poppins);
+}
+
+.dropdownItem:hover{ 
+    background: var(--ellipsePinkGum); 
+}
+
+.active{ 
+    background: var(--ellipsePinkGum);
+}

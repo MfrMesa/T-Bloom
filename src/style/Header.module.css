@@ -1,0 +1,58 @@
+@import url(root.css);
+
+.header {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    height: 48px;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 40px 40px 0px 0px;
+    background-color: var(--white);
+    border-width: 0px 0px 2px 0px;
+    border-style: solid;
+    border-image: linear-gradient(90deg, var(--pinkGum) 9.13%, var(--peach) 34.62%, var(--orange) 60.1%, var(--pinkLight) 100%) 1;
+    font-family: var(--poppins);
+    z-index: 10;
+    width: 100%;
+    padding-inline: 15px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+
+}
+
+.logo img{
+    height: 100%;
+}
+
+/* .logo {
+    font-family: var(--atomic);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    background: linear-gradient(90deg, var(--pinkGum) 9.13%, var(--peach) 34.62%, var(--orange) 60.1%, var(--pinkLight) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+} */
+
+.backButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding-top: 7px;
+}
+
+.placeholder {
+    width: 24px; 
+    height: 24px;
+}

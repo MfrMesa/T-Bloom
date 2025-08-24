@@ -1,0 +1,32 @@
+:root{
+    --pinkGum: #F65681;
+    --peach: #F9B481;
+    --orange: #FA8966; 
+    --pinkLight: #F67EAA;
+    --greenOK: #4F9D90;
+    --redCancel: #DA0C0C;
+    --white: white; 
+    --lightPink: rgba(255, 189, 213, 0.403);
+    --boxshadowPurple: #580f4630;
+    --darkGrey: #a8a6a6;
+    --borderRed: #e2484b4c; 
+    --poppins: "Poppins", sans-serif;
+    --atomic: "Atomic Age", system-ui;
+    --text: #160111;
+    --borderInput: #898787;
+    --lightGrey: #fbfbfb;
+    --ellipseYellow: #f1d67b57;
+    --ellipseOrange: #fa896657;
+    --ellipsePinkGum: #f6568157;
+    --ellipsePinkLight: #f6568157;
+    --inputGrey: #F4F0F8;
+    --boxShadowPink: #e2484b21;
+    --yellow: #FFF4CA;
+    --pinkBorder: #ffbdd5b5;
+    --footer: #9d96a4;
+    --darkOrange: #F45626;
+}
+
+
+
+

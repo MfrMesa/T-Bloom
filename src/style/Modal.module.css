@@ -1,0 +1,53 @@
+@import url(root.css);
+
+.cober {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fa886641; 
+    z-index: 100;
+    height: 93.6%;
+    box-sizing: border-box;
+}
+
+
+.modal{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    min-height: 200px;
+    height: fit-content;
+    background-color: var(--lightGrey);
+    box-shadow: var(--lightPink);
+    border: 1px solid var(--lightPink);
+    box-shadow: -1px -2px 5px 0px var(--borderRed), 0px 2px 5px 0px var(--borderRed);    
+    border-radius: 36px;
+}
+
+.modal p{
+    padding-inline: 1rem;
+    padding-top: 2rem;
+}
+
+.closeButton{
+    width: 20%;
+    border: none;
+    background-color: transparent;
+    padding-top: 15px;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.modalActions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+

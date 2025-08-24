@@ -1,0 +1,46 @@
+@import url(root.css);
+
+.wrap { 
+    position: relative; width: 100%; 
+}
+
+.btn{
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border, #2E2838);
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.label{ font-weight: 600; }
+
+.chev{
+  width: 20px; height: 20px;
+  transition: transform .2s ease;
+}
+.open{ transform: rotate(180deg); }
+
+.menu{
+  position: absolute; left: 0; right: 0; top: calc(100% + 6px);
+  background: #ffffff;
+  border: 1px solid var(--border, #2E2838);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+  padding: 6px;
+  z-index: 50;
+  max-height: 260px; overflow: auto;
+}
+
+.item{
+  display: flex; align-items: center; gap: .75rem;
+  padding: .6rem .75rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.item:hover{ background: #f6f5f8; }
+.active{ background: #f1eef6; }
+
+.logo{ width: 20px; height: 20px; border-radius: 4px; object-fit: cover; }
