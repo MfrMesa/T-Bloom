@@ -32,8 +32,8 @@ export default function AppRoutes() {
       <Route path="/login/newaccount" element={<NewAccount />} /> */}
 
       <Route path="/empresa" element={<Empresa />} />
-      {/* <Route path="/empresa/premios" element={<PremiosEmpresa />} />
       <Route path="/empresa/perfil" element={<PerfilEmpresa />} />
+      {/* <Route path="/empresa/premios" element={<PremiosEmpresa />} />
       <Route path="/empresa/productos" element={<ProductosEmpresa />} />
       <Route path="/empresa/ofertas" element={<OfertasEmpresa />} />
       <Route path="/empresa/locales" element={<LocalesEmpresa />} /> */}
@@ -42,7 +42,7 @@ export default function AppRoutes() {
       {/* <Route path="/cliente/beneficios" element={<BeneficiosCliente />} />
       <Route path="/cliente/recompensas" element={<RecompensasCliente/>} />
       <Route path="/cliente/misLocales" element={<MisLocalesCliente />} /> */}
-      <Route path="/cliente/perfil" element={<PerfilCliente />} />
+      <Route path="/cliente/perfil/" element={<PerfilCliente />} />
       {/* <Route path="/cliente/perfil/newpassword" element={<NewPassword />} />
       <Route path="/cliente/ofertas" element={<OfertasCliente />} /> */}
 

@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 const EmpresaContext = createContext();
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const EmpresaProvider = ({ children }) => {
     const [empresaId, setEmpresaId] = useState(() => localStorage.getItem("empresaId") || null);
@@ -9,7 +10,7 @@ export const EmpresaProvider = ({ children }) => {
     const [ofertasEmpresa, setOfertasEmpresa] = useState([]);
     const [localesEmpresa, setLocalesEmpresa] = useState([]);
 
-    const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+ 
 
     const fetchWithAuth = async (pathOrUrl, options = {}) => {
         const token = localStorage.getItem("tokenEmpresa");
@@ -39,7 +40,7 @@ export const EmpresaProvider = ({ children }) => {
     const obtenerDatosEmpresa = async () => {
         if (!empresaId) return;
         try {
-        const res = await fetchWithAuth(`/empresa/perfil/${empresaId}`);
+        const res = await fetchWithAuth(`${BASE_URL}/empresa/perfil/${empresaId}`);
         if (!res) return;
         if (!res.ok) throw new Error(`Error ${res.status}`);
         const data = await res.json();
@@ -66,7 +67,7 @@ export const EmpresaProvider = ({ children }) => {
         if (fotoPerfil) formData.append("logo", fotoPerfil);
 
         try {
-        const res = await fetchWithAuth(`/empresa/${empresaId}`, {
+        const res = await fetchWithAuth(`${BASE_URL}/empresa/${empresaId}`, {
             method: "PUT",
             body: formData,
         });
@@ -94,7 +95,7 @@ export const EmpresaProvider = ({ children }) => {
             });
 
             try {
-            const res = await fetchWithAuth(`/empresa/${empresaId}/ofertas`, {
+            const res = await fetchWithAuth(`${BASE_URL}/empresa/${empresaId}/ofertas`, {
                 method: "POST",
                 body: formData,
             });
@@ -113,7 +114,7 @@ export const EmpresaProvider = ({ children }) => {
     const obtenerOfertas = async () => {
         if (!empresaId) return [];
         try {
-        const res = await fetchWithAuth(`/empresa/${empresaId}/ofertas`);
+        const res = await fetchWithAuth(`${BASE_URL}/empresa/${empresaId}/ofertas`);
         if (!res?.ok) throw new Error("Error al obtener ofertas");
         const data = await res.json();
         setOfertasEmpresa(data);
@@ -128,7 +129,7 @@ export const EmpresaProvider = ({ children }) => {
     const obtenerLocales = async () => {
         if (!empresaId) return;
         try {
-        const res = await fetchWithAuth(`/empresa/${empresaId}/locales`);
+        const res = await fetchWithAuth(`${BASE_URL}/empresa/${empresaId}/locales`);
         if (!res?.ok) throw new Error("Error al obtener locales");
         const data = await res.json();
         setLocalesEmpresa(data);

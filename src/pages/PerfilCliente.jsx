@@ -12,7 +12,9 @@ import chevron from "/src/assets/Chevron.svg";
 
 export default function PerfilCliente() {
     const navigate = useNavigate();
-    const { id } = useParams(); 
+    
+    const params = useParams();
+    const id = params.id ?? localStorage.getItem("clienteId");
     const { showModal } = useModal();
     const {
         clienteId,
@@ -24,6 +26,7 @@ export default function PerfilCliente() {
         logout,
     } = useCliente();
 
+    console.log(datosCliente)
     const [fotoPerfil, setFotoPerfil] = useState(null);
     const [editSection, setEditSection] = useState(null);
     const [formData, setFormData] = useState({
@@ -37,12 +40,12 @@ export default function PerfilCliente() {
     });
 
     useEffect(() => {
-        if (!id) {
-        navigate("/cliente/login");
-        return;
-        }
-        if (clienteId !== id) setClienteId(id);
-    }, [id]);
+    if (!id) {
+    navigate("/login");
+    return;
+    }
+    if (clienteId !== id) setClienteId(id);
+}, [id, clienteId, setClienteId, navigate]);
 
     useEffect(() => {
         if (datosCliente) {
