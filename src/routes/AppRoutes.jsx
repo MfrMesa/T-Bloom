@@ -26,7 +26,7 @@ import PerfilLocalCliente from '../pages/PerfilLocalCliente';
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/login" element={<LogIn />} />
+      {/* <Route path="/login" element={<LogIn />} /> */}
       {/* <Route path="/login/newpassword" element={<NewPassword />} />
       <Route path="/login/getpassword" element={<GetPassword />} />
       <Route path="/login/newaccount" element={<NewAccount />} /> */}

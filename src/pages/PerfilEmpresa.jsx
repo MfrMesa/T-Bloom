@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEmpresa } from "/src/contexts/EmpresaProvider";
 import formStyles from "/src/style/Form.module.css";
@@ -10,8 +10,45 @@ import placeholderLogo from "/src/assets/PlaceholderLogo.png";
 import camera from "/src/assets/Camera.svg";
 import style from "/src/style/Button.module.css";
 
-export default function PerfilEmpresa() {
-    
+const FIELD_SECTIONS = [
+    {
+        title: "Información general",
+        fields: [
+        { id: "company", label: "Nombre Empresa/Franquicia:", type: "text" },
+        { id: "store", label: "Nombre Local:", type: "text" },
+        { id: "direccionLocal", label: "Dirección de establecimiento:", type: "text" },
+        { id: "country", label: "País:", type: "text" },
+        { id: "state", label: "Provincia:", type: "text" },
+        { id: "postalCode", label: "Código Postal:", type: "text" },
+        ],
+    },
+    {
+        title: "Datos del administrador",
+        fields: [
+        { id: "name", label: "Nombre administrador:", type: "text" },
+        { id: "lastname", label: "Apellidos administrador:", type: "text" },
+        { id: "identity", label: "NIF:", type: "text" },
+        ],
+    },
+    {
+        title: "Datos de contacto",
+        fields: [
+        { id: "email", label: "Correo electrónico:", type: "email" },
+        { id: "phone", label: "Teléfono:", type: "text" },
+        { id: "instagram", label: "Instagram:", type: "text" },
+        { id: "web", label: "Página web:", type: "text" },
+        ],
+    },
+    {
+        title: "Seguridad",
+        fields: [
+        { id: "password", label: "Contraseña:", type: "password", placeholder: "8-12 caracteres, 1 número, 1 carácter especial" },
+        { id: "repeatpassword", label: "Confirmar contraseña:", type: "password", placeholder: "8-12 caracteres, 1 número, 1 carácter especial" },
+        ],
+    },
+    ];
+
+    export default function PerfilEmpresa() {
     const navigate = useNavigate();
     const { empresaId, datosEmpresa, obtenerDatosEmpresa, guardarPerfil } = useEmpresa();
 
@@ -36,6 +73,13 @@ export default function PerfilEmpresa() {
     });
 
     const [snapshot, setSnapshot] = useState(null);
+
+    // ⬇️ Redirección si no hay empresa logueada
+    useEffect(() => {
+        if (!empresaId) {
+        navigate("/empresa/login");
+        }
+    }, [empresaId, navigate]);
 
     useEffect(() => {
         if (empresaId && !datosEmpresa) obtenerDatosEmpresa();
@@ -123,47 +167,6 @@ export default function PerfilEmpresa() {
         setSnapshot(null);
     };
 
-    const fieldSections = useMemo(
-        () => [
-        {
-            title: "Información general",
-            fields: [
-            { id: "company", label: "Nombre Empresa/Franquicia:", type: "text" },
-            { id: "store", label: "Nombre Local:", type: "text" },
-            { id: "direccionLocal", label: "Dirección de establecimiento:", type: "text" },
-            { id: "country", label: "País:", type: "text" },
-            { id: "state", label: "Provincia:", type: "text" },
-            { id: "postalCode", label: "Código Postal:", type: "text" },
-            ],
-        },
-        {
-            title: "Datos del administrador",
-            fields: [
-            { id: "name", label: "Nombre administrador:", type: "text" },
-            { id: "lastname", label: "Apellidos administrador:", type: "text" },
-            { id: "identity", label: "NIF:", type: "text" },
-            ],
-        },
-        {
-            title: "Datos de contacto",
-            fields: [
-            { id: "email", label: "Correo electrónico:", type: "email" },
-            { id: "phone", label: "Teléfono:", type: "text" },
-            { id: "instagram", label: "Instagram:", type: "text" },
-            { id: "web", label: "Página web:", type: "text" },
-            ],
-        },
-        {
-            title: "Seguridad",
-            fields: [
-            { id: "password", label: "Contraseña:", type: "password", placeholder: "8-12 caracteres, 1 número, 1 carácter especial" },
-            { id: "repeatpassword", label: "Confirmar contraseña:", type: "password", placeholder: "8-12 caracteres, 1 número, 1 carácter especial" },
-            ],
-        },
-        ],
-        []
-    );
-
     const logoSrc =
         fotoPerfil
         ? URL.createObjectURL(fotoPerfil)
@@ -196,7 +199,7 @@ export default function PerfilEmpresa() {
             </div>
             </div>
 
-            {fieldSections.map(({ title, fields }) => (
+            {FIELD_SECTIONS.map(({ title, fields }) => (
             <div key={title} className={formStyles.sectionBlock}>
                 <div className={formStyles.sectionHeader}>
                 <h3>{title}</h3>

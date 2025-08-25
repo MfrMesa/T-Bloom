@@ -10,7 +10,46 @@ export const EmpresaProvider = ({ children }) => {
     const [ofertasEmpresa, setOfertasEmpresa] = useState([]);
     const [localesEmpresa, setLocalesEmpresa] = useState([]);
 
- 
+  // Backend -> Form de Perfil 
+    const mapBackendToForm = (raw) => {
+        const e = raw?.empresa ?? raw ?? {};
+        return {
+        company:        e?.NombreEmpresa   ?? e?.company       ?? "",
+        store:          e?.NombreLocal     ?? e?.store         ?? "",
+        direccionLocal: e?.DireccionLocal  ?? e?.direccionLocal?? "",
+        country:        e?.Pais            ?? e?.country       ?? "",
+        state:          e?.Provincia       ?? e?.state         ?? "",
+        postalCode:     e?.CodigoPostal    ?? e?.postalCode    ?? "",
+        name:           e?.NombreAdmin     ?? e?.name          ?? "",
+        lastname:       e?.ApellidosAdmin  ?? e?.lastname      ?? "",
+        identity:       e?.NIF             ?? e?.identity      ?? "",
+        email:          e?.Email           ?? e?.email         ?? "",
+        phone:          e?.Telefono        ?? e?.phone         ?? "",
+        instagram:      e?.Instagram       ?? e?.instagram     ?? "",
+        web:            e?.Web             ?? e?.web           ?? "",
+        logo:           e?.Logo            ?? raw?.logo        ?? null,
+        };
+    };
+
+    // Form de Perfil -> Backend 
+    const mapFormToBackend = (form) => {
+        return {
+        NombreEmpresa:  form.company,
+        NombreLocal:    form.store,
+        DireccionLocal: form.direccionLocal,
+        Pais:           form.country,
+        Provincia:      form.state,
+        CodigoPostal:   form.postalCode,
+        NombreAdmin:    form.name,
+        ApellidosAdmin: form.lastname,
+        NIF:            form.identity,
+        Email:          form.email,
+        Telefono:       form.phone,
+        Instagram:      form.instagram,
+        Web:            form.web,
+        ...(form.password ? { Password: form.password } : {}),
+        };
+    };
 
     const fetchWithAuth = async (pathOrUrl, options = {}) => {
         const token = localStorage.getItem("tokenEmpresa");
@@ -44,7 +83,9 @@ export const EmpresaProvider = ({ children }) => {
         if (!res) return;
         if (!res.ok) throw new Error(`Error ${res.status}`);
         const data = await res.json();
-        setDatosEmpresa(data);
+
+        const mapeado = mapBackendToForm(data);
+        setDatosEmpresa(mapeado);
         } catch (error) {
         console.error("Error al obtener los datos de la empresa:", error);
         }
@@ -58,8 +99,10 @@ export const EmpresaProvider = ({ children }) => {
     const guardarPerfil = async (formDataInput, fotoPerfil) => {
         if (!empresaId) throw new Error("Empresa no definida.");
 
+        const payload = mapFormToBackend(formDataInput);
+
         const formData = new FormData();
-        Object.entries(formDataInput).forEach(([key, value]) => {
+        Object.entries(payload).forEach(([key, value]) => {
         if (value !== null && value !== undefined && value !== "") {
             formData.append(key, value);
         }
@@ -73,8 +116,8 @@ export const EmpresaProvider = ({ children }) => {
         });
         if (!res?.ok) throw new Error("Error al actualizar perfil");
 
-        const actualizado = await res.json();
-        setDatosEmpresa(actualizado);
+        const mapeado = mapBackendToForm(actualizado);
+        setDatosEmpresa(mapeado);
         return true;
         } catch (error) {
         console.error("Error al guardar perfil:", error);

@@ -27,7 +27,6 @@ export default function PerfilCliente() {
     } = useCliente();
 
     console.log(datosCliente)
-    const [fotoPerfil, setFotoPerfil] = useState(null);
     const [editSection, setEditSection] = useState(null);
     const [formData, setFormData] = useState({
         name: "",
@@ -39,25 +38,25 @@ export default function PerfilCliente() {
         repeatpassword: "",
     });
 
+    //Login
     useEffect(() => {
     if (!id) {
     navigate("/login");
     return;
     }
+
     if (clienteId !== id) setClienteId(id);
 }, [id, clienteId, setClienteId, navigate]);
 
+    //Datos cliente
     useEffect(() => {
         if (datosCliente) {
         setFormData((prev) => ({ ...prev, ...datosCliente }));
         }
     }, [datosCliente]);
 
-    const handleFotoChange = (e) => {
-        const file = e.target.files?.[0];
-        if (file) setFotoPerfil(file);
-    };
 
+    //Eliminar cuenta
     const handleEliminarCuenta = () => {
         showModal("¿Seguro que quieres eliminar tu cuenta? Esta acción no se puede deshacer.", {
         closeOnOutsideClick: false,
@@ -134,123 +133,100 @@ export default function PerfilCliente() {
         );
     }
 
-    return (
-        <section className={formStyles.formContainer}>
+return (
+    <section className={formStyles.formContainer}>
         <form className={formStyles.formInnerContainer} onSubmit={handleSubmit}>
-            <BannerEmpresa />
+        <BannerEmpresa />
 
-            <div className={formStyles.tituloNivel}>
+        <div className={formStyles.tituloNivel}>
             <h3>Nivel</h3>
             <PointLoader />
-            </div>
+        </div>
 
-            <div className={formStyles.inputContainer}>
-            <label htmlFor="foto">Foto de perfil:</label>
-            <input id="foto" type="file" accept="image/*" onChange={handleFotoChange} />
-            </div>
-
-            {fieldSections.map(({ title, fields }) => (
+        {fieldSections.map(({ title, fields }) => (
             <div key={title} className={formStyles.sectionBlock}>
-                <div className={formStyles.sectionHeader}>
-                <h3>{title}</h3>
-                <button
-                    type="button"
-                    className={formStyles.penButton}
-                    onClick={() => setEditSection(editSection === title ? null : title)}
-                >
-                    <img src={editSection === title ? check : pen} alt="Editar" />
-                </button>
-                </div>
-
-                {fields.map(({ id, label, type, placeholder }) => (
-                <div className={formStyles.inputContainer} key={id}>
-                    <label htmlFor={id}>{label}</label>
-                    <input
-                    id={id}
-                    type={type}
-                    placeholder={placeholder}
-                    required={id === "name" || id === "lastname" || id === "email"}
-                    disabled={!editSection || editSection !== title}
-                    value={formData[id] || ""}
-                    onChange={handleChange}
-                    />
-                </div>
-                ))}
-            </div>
-            ))}
-
-            <div className={formStyles.sectionBlock}>
             <div className={formStyles.sectionHeader}>
-                <h3>Seguridad</h3>
+                <h3>{title}</h3>
                 <button
                 type="button"
                 className={formStyles.penButton}
-                onClick={() => setEditSection(editSection === "Seguridad" ? null : "Seguridad")}
+                onClick={() =>
+                    setEditSection(editSection === title ? null : title)
+                }
                 >
-                <img src={editSection === "Seguridad" ? check : pen} alt="Editar" />
+                <img src={editSection === title ? check : pen} alt="Editar" />
                 </button>
             </div>
 
-            <div className={formStyles.inputContainer}>
-                <label htmlFor="password">Nueva contraseña:</label>
+            {fields.map(({ id, label, type, placeholder }) => (
+                <div className={formStyles.inputContainer} key={id}>
+                <label htmlFor={id}>{label}</label>
                 <input
-                id="password"
-                type="password"
-                disabled={editSection !== "Seguridad"}
-                value={formData.password || ""}
-                onChange={handleChange}
-                placeholder="(opcional)"
+                    id={id}
+                    type={type}
+                    placeholder={placeholder}
+                    required
+                    disabled={!editSection || editSection !== title}
+                    value={formData[id] || ""}
+                    onChange={handleChange}
                 />
+                </div>
+            ))}
             </div>
-            <div className={formStyles.inputContainer}>
-                <label htmlFor="repeatpassword">Repetir contraseña:</label>
-                <input
-                id="repeatpassword"
-                type="password"
-                disabled={editSection !== "Seguridad"}
-                value={formData.repeatpassword || ""}
-                onChange={handleChange}
-                placeholder="(opcional)"
-                />
-            </div>
-            </div>
+        ))}
 
-            {editSection && (
+        {editSection && (
             <div className={formStyles.inputButtonContainer}>
-                <Button type="submit" variant="save" className="btnSave">
+            <Button type="submit" variant="save" className="btnSave">
                 guardar
-                </Button>
-                <Button
+            </Button>
+            <Button
                 type="button"
                 variant="cancel"
                 className="btnCancel"
                 onClick={() => setEditSection(null)}
-                >
+            >
                 cancelar
-                </Button>
+            </Button>
             </div>
-            )}
+        )}
 
-            <section className={formStyles.buttonsContenedor}>
+        <section className={formStyles.buttonsContenedor}>
             <div className={formStyles.buttons}>
-                <h3>Locales</h3>
-                <Link className={formStyles.linkButtons} to={`/cliente/recompensas/${id}`}>
+            <h3>Seguridad</h3>
+            <Link className={formStyles.linkButtons} to="newpassword">
+                Cambiar contraseña
+                <img src={chevron} alt="" />
+            </Link>
+            </div>
+
+            <div className={formStyles.buttons}>
+            <h3>Locales</h3>
+            <Link className={formStyles.linkButtons} to="/cliente/recompensas">
                 Recompensas
                 <img src={chevron} alt="" />
-                </Link>
+            </Link>
             </div>
 
-            <button type="button" className={formStyles.deleteButtons} onClick={logout}>
-                <p className={formStyles.closeSession}>Cerrar sesión</p>
-                <img src={chevron} alt="" />
+            <button
+            type="button"
+            className={formStyles.deleteButtons}
+            // onClick={handleLogout}
+            >
+            <p className={formStyles.closeSession}>Cerrar sesión</p>
+            <img src={chevron} alt="" />
             </button>
 
-            <button type="button" className={formStyles.deleteButtons} onClick={handleEliminarCuenta}>
-                <p className={formStyles.deleteSession}>Eliminar cuenta</p>
-                <img src={chevron} alt="" />
+            <button
+            type="button"
+            className={formStyles.deleteButtons}
+            onClick={handleEliminarCuenta}
+            >
+            <p className={formStyles.deleteSession}>Eliminar cuenta</p>
+            <img src={chevron} alt="" />
             </button>
-            </section>
-        </form>
         </section>
-    );
+        </form>
+    </section>
+);
 }
