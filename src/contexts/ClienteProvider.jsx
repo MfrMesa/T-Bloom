@@ -11,7 +11,7 @@ export const ClienteProvider = ({ children }) => {
 
     const navigate = useNavigate();
 
-    const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+    const BASE_URL =import.meta.env.VITE_API_URL;;
 
     const fetchWithAuth = async (url, options = {}) => {
         const token = localStorage.getItem("tokenCliente");
@@ -28,14 +28,13 @@ export const ClienteProvider = ({ children }) => {
         if (!clienteId) return;
         setCargandoPerfil(true);
         try {
-            const res = await fetchWithAuth(`https://localhost:3000/cliente/perfil/${clienteId}`);
+            const res = await fetch(`${BASE_URL}/cliente/${clienteId}`);
             if (!res.ok) throw new Error(`Error ${res.status}`);
             const data = await res.json();
 
             setDatosCliente(data);
-
-            if (data.nivel) {
-            const nivelNormalizado = data.nivel.charAt(0).toUpperCase() + data.nivel.slice(1).toLowerCase();
+            if (data.cliente.Nivel) {
+            const nivelNormalizado = data.cliente.Nivel.Nombre.charAt(0).toUpperCase() + data.cliente.Nivel.Nombre.slice(1).toLowerCase();
             setNivelCliente(nivelNormalizado);
             }
         } catch (error) {
@@ -44,7 +43,6 @@ export const ClienteProvider = ({ children }) => {
             setCargandoPerfil(false);
         }
         };
-
         obtenerDatosCliente();
     }, [clienteId]);
 
