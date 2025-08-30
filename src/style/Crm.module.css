@@ -1,0 +1,253 @@
+/* src/style/Crm.module.css */
+@import url(root.css);;
+
+/* Contenedor principal */
+.container {
+  width: 100%;
+  max-width: 1280px; /* ajusta a tu grid */
+  margin: 0 auto;
+  padding: 24px 16px;
+  color: var(--text);
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.filters {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.input,
+.select {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font: inherit;
+  outline: none;
+  background: var(--white);
+  color: var(--text);
+}
+
+.input {
+  width: 100%;
+  max-width: 560px;
+}
+
+.input:focus,
+.select:focus {
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+  border-color: #cfd3da;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: var(--white);
+  color: var(--text);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, opacity 0.15s ease, transform 0.02s ease;
+}
+
+.button:hover {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.buttonPrimary {
+  background: var(--brand);
+  color: var(--white);
+  border-color: var(--brand);
+}
+
+.link {
+  border: none;
+  background: transparent;
+  color: var(--brand);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+/* Selección masiva */
+.bulkBar {
+  margin-bottom: 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bulkCount {
+  font-weight: 600;
+}
+
+/* Tabla */
+.tableWrap {
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--white);
+  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+}
+
+.table {
+  width: 100%;
+  min-width: 960px; /* desktop */
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 14px;
+}
+
+.thead {
+  position: sticky;
+  top: 0;
+  background: var(--white); /* usa var(--bg) si prefieres */
+  z-index: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.th {
+  text-align: left;
+  padding: 12px 12px;
+  white-space: nowrap;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.thCheckbox {
+  width: 40px;
+}
+
+.td {
+  padding: 10px 12px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.tdCheckbox {
+  width: 40px;
+}
+
+.row {
+  cursor: pointer;
+}
+
+.row:hover {
+  background: #f9fafb;
+}
+
+.primary {
+  font-weight: 600;
+}
+
+.truncate {
+  max-width: 280px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px;
+}
+
+/* Badge plan */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+/* variantes */
+.badgeBasico {
+  border-color: #bfdbfe;
+  color: #1e40af;
+  background: #eff6ff;
+}
+
+.badgePlus {
+  border-color: #fde68a;
+  color: #92400e;
+  background: #fffbeb;
+}
+
+.badgeEmpresarial {
+  border-color: #e9d5ff;
+  color: #6b21a8;
+  background: #faf5ff;
+}
+
+.badgeNeutral {
+  border-color: #e5e7eb;
+  color: #374151;
+  background: var(--white);
+}
+
+/* ====== Responsive fixes ====== */
+@media (max-width: 991px) {
+  .table { min-width: 680px; } /* tablet */
+}
+
+@media (max-width: 767px) {
+  .thead { position: static; } /* sticky puede fallar en móvil */
+  .container { padding: 16px 12px; }
+  .input { max-width: 100%; }
+}

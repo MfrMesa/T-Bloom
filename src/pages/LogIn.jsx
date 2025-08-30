@@ -8,6 +8,7 @@ import EyeOpen from "/src/assets/EyeOpen.svg";
 import { useModal } from "/src/contexts/Modal";
 
 export default function LogIn() {
+    
     const [showPassword, setShowPassword] = useState(false);
     const [remember, setRemember] = useState(false);
     const [loading, setLoading] = useState(false);

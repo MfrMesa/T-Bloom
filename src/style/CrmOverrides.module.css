@@ -1,0 +1,67 @@
+/* Variables por si tu tema no las define */
+:root {
+  --white: #fff;
+  --bg: #fff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --brand: #111827;
+}
+
+/* --- RESETEOS BASE PARA EL WRAPPER EN RUTA CRM --- */
+:global(.mobile-wrapper.is-wide) {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+
+:global(.mobile-wrapper.is-wide .mobile-border-effect),
+:global(.mobile-wrapper.is-wide .mobile-content),
+:global(.mobile-wrapper.is-wide .app-layout) {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+/* --- LO CRÍTICO: QUITAR POSICIONAMIENTO/ALTURAS QUE APLASTAN --- */
+:global(.mobile-wrapper.is-wide .scroll-area) {
+  position: static !important;     /* si antes era fixed/absolute */
+  inset: auto !important;          /* resetea top/right/bottom/left */
+  height: auto !important;
+  min-height: 100vh !important;    /* que tenga alto para mostrar el contenido */
+  overflow: visible !important;
+}
+
+:global(.mobile-wrapper.is-wide .scroll-inner) {
+  position: static !important;
+  height: auto !important;
+  min-height: auto !important;
+  overflow: visible !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* En desktop/tablet no queremos nada del look “móvil” */
+@media (min-width: 768px) {
+  :global(.mobile-wrapper.is-wide),
+  :global(.mobile-wrapper.is-wide .mobile-border-effect),
+  :global(.mobile-wrapper.is-wide .mobile-content),
+  :global(.mobile-wrapper.is-wide .app-layout),
+  :global(.mobile-wrapper.is-wide .scroll-area),
+  :global(.mobile-wrapper.is-wide .scroll-inner) {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+}
