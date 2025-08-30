@@ -1,4 +1,4 @@
-/* Variables por si tu tema no las define */
+/* Variables (por si tu tema no las define) */
 :root {
   --white: #fff;
   --bg: #fff;
@@ -8,7 +8,7 @@
   --brand: #111827;
 }
 
-/* --- RESETEOS BASE PARA EL WRAPPER EN RUTA CRM --- */
+/* ========== DESACTIVAR LAYOUT MÓVIL EN RUTA CRM ========== */
 :global(.mobile-wrapper.is-wide) {
   max-width: none !important;
   width: 100% !important;
@@ -18,38 +18,47 @@
   background: transparent !important;
 }
 
+/* fuerza a que TODOS los niveles del wrapper sean de ancho completo y sin efectos */
 :global(.mobile-wrapper.is-wide .mobile-border-effect),
 :global(.mobile-wrapper.is-wide .mobile-content),
 :global(.mobile-wrapper.is-wide .app-layout) {
   max-width: none !important;
   width: 100% !important;
+  min-width: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   background: transparent !important;
   overflow: visible !important;
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  display: block !important;
 }
 
-/* --- LO CRÍTICO: QUITAR POSICIONAMIENTO/ALTURAS QUE APLASTAN --- */
+/* crítico: quita el posicionamiento del contenedor con scroll del layout móvil */
 :global(.mobile-wrapper.is-wide .scroll-area) {
-  position: static !important;     /* si antes era fixed/absolute */
-  inset: auto !important;          /* resetea top/right/bottom/left */
+  position: static !important;     /* si era fixed/absolute */
+  inset: auto !important;
   height: auto !important;
-  min-height: 100vh !important;    /* que tenga alto para mostrar el contenido */
+  min-height: 100vh !important;
+  width: 100% !important;
   overflow: visible !important;
 }
 
+/* y del inner también */
 :global(.mobile-wrapper.is-wide .scroll-inner) {
   position: static !important;
   height: auto !important;
   min-height: auto !important;
+  width: 100% !important;
   overflow: visible !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
-/* En desktop/tablet no queremos nada del look “móvil” */
+/* En desktop/tablet aseguramos que nada del look móvil quede activo */
 @media (min-width: 768px) {
   :global(.mobile-wrapper.is-wide),
   :global(.mobile-wrapper.is-wide .mobile-border-effect),
@@ -63,5 +72,12 @@
     padding: 0 !important;
     background: transparent !important;
     overflow: visible !important;
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    display: block !important;
   }
 }
+
+/* (opcional debug) pinta el contorno del layout cuando estás en CRM */
+/* :global(.mobile-wrapper.is-wide .app-layout) { outline: 2px dashed hotpink; } */

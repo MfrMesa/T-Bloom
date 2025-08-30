@@ -251,3 +251,18 @@
   .container { padding: 16px 12px; }
   .input { max-width: 100%; }
 }
+
+/* Scroll suave en iOS */
+.tableWrap { -webkit-overflow-scrolling: touch; }
+
+/* Tablet: evita que la tabla “desaparezca” por min-width grande */
+@media (max-width: 991px) {
+  .table { min-width: 680px; }
+}
+
+/* Móvil: quita sticky y ajusta paddings */
+@media (max-width: 767px) {
+  .thead { position: static; }
+  .container { padding: 16px 12px; }
+  .input { max-width: 100%; }
+}
