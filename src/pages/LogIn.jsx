@@ -12,7 +12,6 @@ export default function LogIn() {
     const [showPassword, setShowPassword] = useState(false);
     const [remember, setRemember] = useState(false);
     const [loading, setLoading] = useState(false);
-    const { showModal } = useModal();
     const navigate = useNavigate();
     const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -33,35 +32,32 @@ export default function LogIn() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ Email: email, Pass: password}),
         });
+        
+        // Guarda el token dependiendo del checkbox "Recordarme" 
 
         const data = await res.json();
+        // if (remember) {
+        //     localStorage.setItem("tokenEmpresa", data.token); 
+        // } else {
+        //     sessionStorage.setItem("tokenEmpresa", data.token); 
+        // }      
+        
 
         if (res.status===500) {
             alert(data?.message || "Error al iniciar sesión.");
             return;
         }else if (res.status===200) {
-            console.log("Respuesta del servidor:", res.status);   
-        showModal("Inicio de sesión exitoso");
         localStorage.setItem("clienteId", data.cliente.Id);
-        navigate("/cliente/perfil/");
-        }
-
-        // Guarda el token dependiendo del checkbox "Recordarme"
-        if (remember) {
-            localStorage.setItem("tokenEmpresa", data.token); 
-        } else {
-            sessionStorage.setItem("tokenEmpresa", data.token); 
-        }
-
-        // // Redirección basada en rol
-        // if (data.tipo === "cliente") {
-        //     navigate(`${BASE_URL}/cliente/locales`);
-        // } else if (data.tipo === "empresa") {
-        //     navigate("/panel");
-        // } else {
-        //     navigate("/"); 
-        // }
-
+            
+    }
+    // Redirección basada en rol
+    if (data.cliente.IdRol === 2) {
+        navigate(`/cliente`);
+    } else if (data.cliente.IdRol === 1) {
+        navigate(`/empresa`);
+    } else {
+        navigate("/"); //que lleve a la web para crear un perfil desde el formulario
+    }
 
         } catch (error) {
         console.error("Error al iniciar sesión:", error);
@@ -123,3 +119,6 @@ export default function LogIn() {
         </section>
     );
 }
+
+
+

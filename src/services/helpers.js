@@ -1,6 +1,7 @@
+
 export const csv = (v) => {
     if (v == null) return "";
-    const s = String(v).replaceAll('"', '""');
+    const s = String(v).replace(/"/g, '""'); 
     return `"${s}"`;
     };
 
@@ -8,7 +9,11 @@ export const csv = (v) => {
     if (!v) return "—";
     const d = new Date(v);
     if (isNaN(d)) return String(v);
-    return d.toLocaleDateString(undefined, { year: "numeric", month: "2-digit", day: "2-digit" });
+    return d.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+    });
     };
 
     export const formatPhone = (v) => {
@@ -48,11 +53,15 @@ export const csv = (v) => {
         );
     });
 
-    const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+    const blob = new Blob(["\uFEFF" + lines.join("\n")], {
+        type: "text/csv;charset=utf-8;",
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
     a.download = `empresas_${Date.now()}.csv`;
+    document.body.appendChild(a);
     a.click();
+    a.remove();
     URL.revokeObjectURL(url);
-    };
+};

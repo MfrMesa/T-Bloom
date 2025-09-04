@@ -1,16 +1,13 @@
-/* src/style/Crm.module.css */
 @import url(root.css);;
 
-/* Contenedor principal */
 .container {
   width: 100%;
-  max-width: 1280px; /* ajusta a tu grid */
+  max-width: 1500px; 
   margin: 0 auto;
   padding: 24px 16px;
   color: var(--text);
 }
 
-/* Header */
 .header {
   display: flex;
   align-items: center;
@@ -30,7 +27,6 @@
   letter-spacing: 0.2px;
 }
 
-/* Toolbar */
 .toolbar {
   display: flex;
   flex-direction: column;
@@ -56,7 +52,7 @@
 
 .input,
 .select {
-  border: 1px solid var(--border);
+  border: 1px solid var(--lightPink);
   border-radius: 12px;
   padding: 8px 12px;
   font: inherit;
@@ -73,7 +69,7 @@
 .input:focus,
 .select:focus {
   box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
-  border-color: #cfd3da;
+  border-color: var(--lightPink);
 }
 
 .actions {
@@ -83,7 +79,7 @@
 }
 
 .button {
-  border: 1px solid var(--border);
+  border: 1px solid var(--lightPink);
   border-radius: 12px;
   padding: 8px 12px;
   background: var(--white);
@@ -93,7 +89,7 @@
 }
 
 .button:hover {
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 8px var(--boxshadowPurple);
 }
 
 .button:active {
@@ -101,15 +97,15 @@
 }
 
 .buttonPrimary {
-  background: var(--brand);
+  background: var(--pinkGum);
   color: var(--white);
-  border-color: var(--brand);
+  border-color: var(--pinkGum);
 }
 
 .link {
   border: none;
   background: transparent;
-  color: var(--brand);
+  color: var(--pinkGum);
   text-decoration: underline;
   cursor: pointer;
   padding: 0;

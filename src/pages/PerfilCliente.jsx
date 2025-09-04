@@ -55,6 +55,28 @@ export default function PerfilCliente() {
         }
     }, [datosCliente]);
 
+    //Cerrar sesion
+    const handleLogout = async () => {
+        try {
+            await fetch(`${BASE_URL}/auth/logout`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            });
+
+            localStorage.removeItem("tokenEmpresa");
+            localStorage.removeItem("clienteId");
+            sessionStorage.removeItem("tokenEmpresa");
+            sessionStorage.removeItem("clienteId");
+
+            if (typeof logout === "function") logout();
+
+            navigate("/login", { replace: true });
+        } catch (e) {
+            console.error("Error en logout:", e);
+            navigate("/login", { replace: true });
+        }
+};
+
 
     //Eliminar cuenta
     const handleEliminarCuenta = () => {
@@ -97,7 +119,7 @@ export default function PerfilCliente() {
         }
 
         try {
-        await guardarPerfilCliente(formData, fotoPerfil);
+        await guardarPerfilCliente(formData);
         alert("Perfil actualizado correctamente.");
         setEditSection(null);
         } catch (error) {
@@ -139,7 +161,6 @@ return (
         <BannerEmpresa />
 
         <div className={formStyles.tituloNivel}>
-            <h3>Nivel</h3>
             <PointLoader />
         </div>
 
@@ -177,9 +198,6 @@ return (
 
         {editSection && (
             <div className={formStyles.inputButtonContainer}>
-            <Button type="submit" variant="save" className="btnSave">
-                guardar
-            </Button>
             <Button
                 type="button"
                 variant="cancel"
@@ -188,8 +206,13 @@ return (
             >
                 cancelar
             </Button>
+            <Button type="submit" variant="save" className="btnSave">
+                guardar
+            </Button>
             </div>
         )}
+
+        <span className={formStyles.divider}></span>
 
         <section className={formStyles.buttonsContenedor}>
             <div className={formStyles.buttons}>
@@ -199,6 +222,16 @@ return (
                 <img src={chevron} alt="" />
             </Link>
             </div>
+            <button
+            type="button"
+            className={formStyles.deleteButtons}
+            onClick={handleEliminarCuenta}
+            >
+            <p className={formStyles.deleteSession}>Eliminar cuenta</p>
+            <img src={chevron} alt="" />
+            </button>
+            
+            <hr className={formStyles.divider} />
 
             <div className={formStyles.buttons}>
             <h3>Locales</h3>
@@ -208,23 +241,18 @@ return (
             </Link>
             </div>
 
+            <hr className={formStyles.divider} />
+            
             <button
             type="button"
             className={formStyles.deleteButtons}
-            // onClick={handleLogout}
+            onClick={handleLogout}
             >
             <p className={formStyles.closeSession}>Cerrar sesión</p>
             <img src={chevron} alt="" />
             </button>
 
-            <button
-            type="button"
-            className={formStyles.deleteButtons}
-            onClick={handleEliminarCuenta}
-            >
-            <p className={formStyles.deleteSession}>Eliminar cuenta</p>
-            <img src={chevron} alt="" />
-            </button>
+            <hr className={formStyles.divider} />
         </section>
         </form>
     </section>

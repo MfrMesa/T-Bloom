@@ -20,7 +20,6 @@ export default function PointLoader({ total = 200, puntosIniciales = 0 }) {
     return (
         <section className={styles.loader}>
             <div className={styles.loaderWrapper}>
-                {/* <div className={styles.etiqueta}>{level}</div> */}
                 <div className={styles.barraContenedor}>
                     <div className={styles.etiqueta}>Light</div>
                     <div className={styles.barraProgreso} style={{ width: `${porcentaje}%` }} />

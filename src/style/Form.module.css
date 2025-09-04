@@ -204,3 +204,10 @@
     transition: all 0.2s ease-in-out;
     font-weight: 600;
 }
+
+.divider {
+    border: none;
+    width: 200px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* línea muy sutil */
+    margin: 1rem 0; /* espacio arriba y abajo */
+}
