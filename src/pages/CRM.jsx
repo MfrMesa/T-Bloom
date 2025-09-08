@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
-import styles from "/src/style/Crm.module.css";
-import BadgePlan from "/src/components/BadgePlan";
-import { csv, formatDate, formatPhone, exportCompaniesCsv } from "/src/services/helpers.js";
-import { MOCK_DATA } from "/src/services/mock.js";
+    import React, { useEffect, useMemo, useState } from "react";
+    import styles from "/src/style/Crm.module.css";
+    import { formatDate, formatPhone, exportCompaniesCsv } from "/src/services/helpers.js";
+    import { MOCK_DATA } from "/src/services/mock.js";
 
-export default function CRMList({ logoUrl, data, onAddCompany, onRowClick }) {
+    export default function CRM({ data, onAddCompany, onRowClick }) {
     const [empresas, setEmpresas] = useState(() => data ?? MOCK_DATA);
     const [nameQuery, setNameQuery] = useState("");
     const [plan, setPlan] = useState("ALL");
@@ -48,15 +47,20 @@ export default function CRMList({ logoUrl, data, onAddCompany, onRowClick }) {
         exportCompaniesCsv(toExport);
     };
 
+    // ---- Badge inline (sin componente aparte) ----
+    const planClass = (p) => {
+        if (p === "Basico" || p === "Básico") return `${styles.badge} ${styles.badgeBasico}`;
+        if (p === "Plus") return `${styles.badge} ${styles.badgePlus}`;
+        if (p === "Empresarial") return `${styles.badge} ${styles.badgeEmpresarial}`;
+        return `${styles.badge} ${styles.badgeGratis}`;
+    };
+
     return (
-        <section className={styles.container}>
-        {/* Header */}
+        <section className={styles.containerCRM}>
         <div className={styles.header}>
-            {logoUrl && <img src={logoUrl} alt="logo" className={styles.logo} />}
-            <h1 className={styles.title}>LISTA DE EMPRESAS</h1>
+            <h1 className={styles.titleCRM}>LISTA DE EMPRESAS</h1>
         </div>
 
-        {/* Toolbar */}
         <div className={styles.toolbar}>
             <div className={styles.filters}>
             <input
@@ -73,6 +77,7 @@ export default function CRMList({ logoUrl, data, onAddCompany, onRowClick }) {
                 aria-label="Filtrar por plan"
             >
                 <option value="ALL">Todos los planes</option>
+                <option value="Gratis">Gratis</option>
                 <option value="Basico">Básico</option>
                 <option value="Plus">Plus</option>
                 <option value="Empresarial">Empresarial</option>
@@ -94,7 +99,6 @@ export default function CRMList({ logoUrl, data, onAddCompany, onRowClick }) {
             </div>
         </div>
 
-        {/* Acciones masivas */}
         {selected.size > 0 && (
             <div className={styles.bulkBar}>
             <span className={styles.bulkCount}>{selected.size} seleccionadas</span>
@@ -104,7 +108,6 @@ export default function CRMList({ logoUrl, data, onAddCompany, onRowClick }) {
             </div>
         )}
 
-        {/* Tabla */}
         <div className={styles.tableWrap}>
             <table className={styles.table}>
             <thead className={styles.thead}>
@@ -153,7 +156,9 @@ export default function CRMList({ logoUrl, data, onAddCompany, onRowClick }) {
                     <Td className={styles.truncate} title={e.direccion}>
                     {e.direccion}
                     </Td>
-                    <Td><BadgePlan plan={e.plan} /></Td>
+                    <Td>
+                    <span className={planClass(e.plan)}>{e.plan ?? "—"}</span>
+                    </Td>
                     <Td>{e.locales?.length ?? 0}</Td>
                 </tr>
                 ))}
@@ -179,4 +184,4 @@ export default function CRMList({ logoUrl, data, onAddCompany, onRowClick }) {
         {children}
         </td>
     );
-}
+    }

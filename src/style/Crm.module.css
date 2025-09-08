@@ -1,11 +1,17 @@
-@import url(root.css);;
+@import url(root.css);
 
-.container {
+.containerCRM {
+  position: relative;
+  top: 65px;
   width: 100%;
-  max-width: 1500px; 
-  margin: 0 auto;
+  max-width: 2000px;
+  margin-top: 3rem;
   padding: 24px 16px;
   color: var(--text);
+  background: var(--white);
+  height: fit-content;
+  min-height: 100vh;
+  border-radius: 50px;
 }
 
 .header {
@@ -15,16 +21,11 @@
   margin-bottom: 24px;
 }
 
-.logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-.title {
+.titleCRM {
   font-size: 22px;
   font-weight: 600;
   letter-spacing: 0.2px;
+  color: var(--pinkGum) !important; 
 }
 
 .toolbar {
@@ -68,7 +69,7 @@
 
 .input:focus,
 .select:focus {
-  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+  box-shadow: 0 0 0 3px var(--boxshadowPurple);
   border-color: var(--lightPink);
 }
 
@@ -90,6 +91,8 @@
 
 .button:hover {
   box-shadow: 0 1px 8px var(--boxshadowPurple);
+  background: var(--orange);
+  color: var(--white)
 }
 
 .button:active {
@@ -112,7 +115,6 @@
   font: inherit;
 }
 
-/* Selección masiva */
 .bulkBar {
   margin-bottom: 12px;
   font-size: 14px;
@@ -128,15 +130,15 @@
 /* Tabla */
 .tableWrap {
   overflow: auto;
-  border: 1px solid var(--border);
+  border: 1px solid var(--lightPink);
   border-radius: 12px;
   background: var(--white);
-  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 .table {
   width: 100%;
-  min-width: 960px; /* desktop */
+  min-width: 960px;
   border-collapse: collapse;
   table-layout: fixed;
   font-size: 14px;
@@ -145,47 +147,39 @@
 .thead {
   position: sticky;
   top: 0;
-  background: var(--white); /* usa var(--bg) si prefieres */
+  background: var(--white);
   z-index: 1;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--lightPink);
 }
 
 .th {
   text-align: left;
   padding: 12px 12px;
   white-space: nowrap;
-  color: var(--muted);
+  color: var(--text);
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 0.06em;
+  font-family: var(--poppins);
 }
 
-.thCheckbox {
-  width: 40px;
+.thCheckbox { 
+  width: 40px; 
 }
 
 .td {
   padding: 10px 12px;
   vertical-align: top;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--lightPink);
   color: var(--text);
 }
 
-.tdCheckbox {
-  width: 40px;
-}
+.tdCheckbox { width: 40px; }
 
-.row {
-  cursor: pointer;
-}
+.row { cursor: pointer; }
+.row:hover { background: #f9fafb; }
 
-.row:hover {
-  background: #f9fafb;
-}
-
-.primary {
-  font-weight: 600;
-}
+.primary { font-weight: 600; }
 
 .truncate {
   max-width: 280px;
@@ -196,11 +190,11 @@
 
 .empty {
   text-align: center;
-  color: var(--muted);
+  color: var(--muted, #6b7280);
   padding: 24px;
 }
 
-/* Badge plan */
+/* Badges */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -212,53 +206,15 @@
   border: 1px solid;
 }
 
-/* variantes */
-.badgeBasico {
-  border-color: #bfdbfe;
-  color: #1e40af;
-  background: #eff6ff;
-}
+.badgeBasico      { border-color:#bfdbfe; color:#1e40af; background:#eff6ff; }
+.badgePlus        { border-color:#fde68a; color:#92400e; background:#fffbeb; }
+.badgeEmpresarial { border-color:#e9d5ff; color:#6b21a8; background:#faf5ff; }
+.badgeGratis     { border-color:#ffd5f4; color:#a82170; background:#fff5fb; }
 
-.badgePlus {
-  border-color: #fde68a;
-  color: #92400e;
-  background: #fffbeb;
-}
-
-.badgeEmpresarial {
-  border-color: #e9d5ff;
-  color: #6b21a8;
-  background: #faf5ff;
-}
-
-.badgeNeutral {
-  border-color: #e5e7eb;
-  color: #374151;
-  background: var(--white);
-}
-
-/* ====== Responsive fixes ====== */
-@media (max-width: 991px) {
-  .table { min-width: 680px; } /* tablet */
-}
-
-@media (max-width: 767px) {
-  .thead { position: static; } /* sticky puede fallar en móvil */
-  .container { padding: 16px 12px; }
-  .input { max-width: 100%; }
-}
-
-/* Scroll suave en iOS */
-.tableWrap { -webkit-overflow-scrolling: touch; }
-
-/* Tablet: evita que la tabla “desaparezca” por min-width grande */
-@media (max-width: 991px) {
-  .table { min-width: 680px; }
-}
-
-/* Móvil: quita sticky y ajusta paddings */
+/* Responsive */
+@media (max-width: 991px) { .table { min-width: 680px; } }
 @media (max-width: 767px) {
   .thead { position: static; }
-  .container { padding: 16px 12px; }
+  .containerCRM { padding: 16px 12px; }
   .input { max-width: 100%; }
 }

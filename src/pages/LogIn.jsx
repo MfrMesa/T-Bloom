@@ -106,10 +106,6 @@ export default function LogIn() {
 
             <div className={styles.links}>
             <Link to="/login/newpassword">¿Has olvidado tu contraseña?</Link>
-            <Link to="/login/newaccount">
-                ¿No tienes una cuenta?{" "}
-                <span className={styles.linkAccent}>Suscribete</span>
-            </Link>
             </div>
 
             <Button type="submit" variant="save" className="btnGeneric" disabled={loading}>

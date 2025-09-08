@@ -50,7 +50,7 @@ export default function AppRoutes() {
 
       {/* <Route path="/cliente/local" element={<PerfilLocalCliente />} /> */}
       {/* <Route path="/cliente/local/productos" element={<ProductosLocales />} /> */}
-        {/* <Route path="/CRM" element={<CRM />} /> */}
+      <Route path="/CRM" element={<CRM />} /> 
     </Routes>
   );
 }

@@ -11,8 +11,11 @@
     align-items: center;
 }
 
+.container h2{
+    margin-bottom: 5rem;
+}
+
 .containerTitulo{
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,6 +98,11 @@ input:focus{
     gap: 1rem;
     font-size: 0.85rem;
     text-align: center;
+}
+
+.links:hover a{
+    color: var(--orange );
+    transition: all ease-in-out 5ms;
 }
 
 .links a{
